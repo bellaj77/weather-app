@@ -1,7 +1,7 @@
 // const CreateAutoComplete = { fetchData }
 // apikey: 17a1fc3fa922438dbbe01411211711
-// 'http://api.weatherapi.com/v1/current.json?key=17a1fc3fa922438dbbe01411211711&q=London&aqi=no'
 const fetchData = async (searchInput) => {
+  
   const response = await axios.get(
     'http://api.weatherapi.com/v1/search.json',
     {
@@ -9,16 +9,15 @@ const fetchData = async (searchInput) => {
         key: '17a1fc3fa922438dbbe01411211711',
         q: searchInput,
 
-        // appid: 'd18c77fc02324072392d419dc2f3b9d8',
+
       },
     },
   );
   console.log(response.data);
-  // console.log(response.data.location);
+
 };
 
 const form = document.querySelector('.autocomplete');
-
 
 form.innerHTML = `
   <form>
@@ -47,10 +46,8 @@ const onInput = async (evt) => {
   const data = await fetchData(evt.target.value);
   if (data) {
     const dropdown = document.querySelector('.dropdown-menu');
-    dropdown.removeAttribute('hidden');
+    //dropdown.removeAttribute('hidden');
   }
-
 };
-
 
 input.addEventListener('input', onInput);
