@@ -1,11 +1,38 @@
 html {
-    height: 800px;
+    height: 100%;
+
 }
 
 body {
+    height: 100%;
+    max-width: 1280px;
+    margin: auto;
     font-family: 'Open Sans', sans-serif;
-    background-image: linear-gradient(to top left, rgba(255,0,0,0), rgb(119, 188, 228));
+    background-image: 
+    linear-gradient(to top left, rgba(255,0,0,0), rgb(119, 188, 228));
 }
+
+#title {
+    color: white;
+}
+
+.main-title {
+    font-size: 180%;
+    font-weight: bold;
+}
+
+.temperature {
+    font-size: 650%;
+}
+
+.location {
+    font-size: 200%;
+}
+
+.currentWeather {
+    font-size: 175%;
+}
+
 
 
 
