@@ -9,12 +9,11 @@ const fetchData = async (searchInput) => {
         key: '17a1fc3fa922438dbbe01411211711',
         q: searchInput,
 
-        // appid: 'd18c77fc02324072392d419dc2f3b9d8',
+
       },
     },
   );
   console.log(response.data);
-  // console.log(response.data.location);
 };
 
 const form = document.querySelector('.autocomplete');
