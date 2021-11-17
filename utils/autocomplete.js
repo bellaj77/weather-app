@@ -19,15 +19,33 @@ const fetchData = async (searchInput) => {
 const form = document.querySelector('.autocomplete');
 form.innerHTML = `
   <form>
-    <label for="searchInput"></label>
+  <div class="dropdown">
+  <label for="searchInput"></label>
     <input
-      id="input"
+      id="input dropdownMenuLink"
+      class="dropdown-toggle"
+      data-bs-toggle="dropdown" aria-expanded="false"
       type="text"
       placeholder='Search for a location...'
     ></input>
-    <button type="submit">Submit</button>
-  </form>
+
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" hidden>
+    <li><a class="dropdown-item" href="#">Action</a></li>
+    <li><a class="dropdown-item" href="#">Another action</a></li>
+    <li><a class="dropdown-item" href="#">Something else here</a></li>
+  </ul>
+</div>
+<button type="submit">Submit</button>
+</form>
 `;
 
+const onInput = () => {
+  const data = fetchData();
+  if (data) {
+    const dropdown = document.querySelector('.dropdown-menu');
+    dropdown.removeAttribute('hidden');
+  }
+};
+
 const input = document.querySelector('#input');
-input.addEventListener('input', fetchData());
+// input.addEventListener('input', onInput());
