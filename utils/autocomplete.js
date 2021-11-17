@@ -25,7 +25,7 @@ form.innerHTML = `
   <label for="searchInput"></label>
     <input
       id="input dropdownMenuLink"
-      class="input dropdown-toggle"
+      class="input rounded-pill dropdown-toggle border-none"
       data-bs-toggle="dropdown" aria-expanded="false"
       type="text"
       placeholder='Search for a location...'
