@@ -20,12 +20,12 @@ const fetchData = async (searchInput) => {
 const form = document.querySelector('.autocomplete');
 
 form.innerHTML = `
-  <form>
-  <div class="dropdown">
+  <form class="mt-2 d-flex justify-content-end me-2">
+  <div class="dropdown me-2 mt-2">
   <label for="searchInput"></label>
     <input
       id="input dropdownMenuLink"
-      class="input rounded-pill dropdown-toggle border-none"
+      class="input dropdown-toggle bg-transparent border-top-0 border-end-0 border-start-0"
       data-bs-toggle="dropdown" aria-expanded="false"
       type="text"
       placeholder='Search for a location...'
@@ -37,7 +37,7 @@ form.innerHTML = `
     <li><a class="dropdown-item" href="#">Something else here</a></li>
   </ul>
 </div>
-<button type="submit">Submit</button>
+<button class="float-end btn btn-light" type="submit">search</button>
 </form>
 `;
 const input = document.querySelector('.input');
