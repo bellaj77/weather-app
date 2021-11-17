@@ -1,14 +1,20 @@
 // const CreateAutoComplete = { fetchData }
 // apikey: 17a1fc3fa922438dbbe01411211711
 const fetchData = async (searchInput) => {
-  const response = await axios.get('http://api.weatherapi.com/v1/search.json', {
-    params: {
-      key: '17a1fc3fa922438dbbe01411211711',
-      q: searchInput,
+  
+  const response = await axios.get(
+    'http://api.weatherapi.com/v1/search.json',
+    {
+      params: {
+        key: '17a1fc3fa922438dbbe01411211711',
+        q: searchInput,
+
+
+      },
     },
-  });
-  console.log(response);
-  // console.log(response.data.location);
+  );
+  console.log(response.data);
+
 };
 
 const form = document.querySelector('.autocomplete');
