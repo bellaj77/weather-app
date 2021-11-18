@@ -12,6 +12,10 @@ body {
     linear-gradient(to top left, rgba(255,0,0,0), rgb(119, 188, 228));
 }
 
+#navbar {
+    background-color: lightblue;
+}
+
 #title {
     color: white;
 }
@@ -33,6 +37,11 @@ body {
     font-size: 175%;
 }
 
-
+#list {
+    font-size: 90%;
+    max-width: 300px;
+    color: white;
+    margin: auto;
+}
 
 

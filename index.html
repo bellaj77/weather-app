@@ -27,8 +27,13 @@
     <title>Weather</title>
   </head>
   <body>
-    <div class="row">
-      <h1 class="main-title mb-5 col-md-4">Weather App</h1>
+
+
+    <div id="navbar" class="row">
+      <h1 class="main-title mb-5 col-md-4">Weather
+        App
+      </h1>
+
       <div class="autocomplete text-center col-md-4 ms-auto"></div>
     </div>
 
@@ -38,7 +43,17 @@
           <h5 id="title" class="card-title location mb-1">City, State</h5>
           <h5 id="title" class="card-title temperature mb-0">77*</h5>
           <p id="title" class="card-subtitle currentWeather mb-1">Sunny</p>
-        </div>
+
+          <div class="container">
+            <div id="list" class="row row-cols-2">
+              <div class="col">Feels Like: 58</div>
+              <div class="col">Wind: </div>
+              <div class="col">Air Quality:</div>
+              <div class="col">Column:</div>
+            </div>
+          </div>
+          </div>
+
       </div>
     </section>
 
