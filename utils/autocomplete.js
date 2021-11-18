@@ -1,7 +1,7 @@
 // const CreateAutoComplete = { fetchData }
 // apikey: 17a1fc3fa922438dbbe01411211711
-// 'http://api.weatherapi.com/v1/current.json?key=17a1fc3fa922438dbbe01411211711&q=London&aqi=no'
 const fetchData = async (searchInput) => {
+  
   const response = await axios.get(
     'http://api.weatherapi.com/v1/search.json',
     {
@@ -13,6 +13,7 @@ const fetchData = async (searchInput) => {
       },
     },
   );
+
   console.log(response.data)
   return response.data;
 
@@ -20,7 +21,6 @@ const fetchData = async (searchInput) => {
 };
 
 const form = document.querySelector('.autocomplete');
-
 
 form.innerHTML = `
   <form class="mt-2 d-flex justify-content-end me-2">
@@ -52,6 +52,7 @@ const renderOption = (locations) => {
 }
 
 const onInput = async (evt) => {
+
   const items = await fetchData(evt.target.value);
 
   if (items) {
@@ -63,9 +64,9 @@ const onInput = async (evt) => {
       list.append('newitem')
       console.log(item.name)
     }
+
+
   }
-
 };
-
 
 input.addEventListener('input', onInput);
