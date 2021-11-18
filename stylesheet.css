@@ -33,6 +33,11 @@ body {
     font-size: 175%;
 }
 
-
+#list {
+    font-size: 90%;
+    max-width: 300px;
+    color: white;
+    margin: auto;
+}
 
 
