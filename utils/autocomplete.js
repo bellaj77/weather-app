@@ -13,7 +13,10 @@ const fetchData = async (searchInput) => {
       },
     },
   );
-  console.log(response.data);
+  console.log(response.data)
+  return response.data;
+
+
 };
 
 const form = document.querySelector('.autocomplete');
@@ -40,13 +43,26 @@ form.innerHTML = `
 <button class="float-end btn btn-light" type="submit">search</button>
 </form>
 `;
-const input = document.querySelector('.input');
+const input = document.querySelector('input');
+
+const renderOption = (locations) => {
+  return `
+    <p>${locations.name}
+  `
+}
 
 const onInput = async (evt) => {
-  const data = await fetchData(evt.target.value);
-  if (data) {
-    const dropdown = document.querySelector('.dropdown-menu');
-    dropdown.removeAttribute('hidden');
+  const items = await fetchData(evt.target.value);
+
+  if (items) {
+    for (let item of items) {
+      const list = document.querySelector('.dropdown-menu');
+      const newitem = document.createElement('a');
+      newitem.classList.add('dropdown-item')
+      newitem.innerHTML = renderOption(item)
+      list.append('newitem')
+      console.log(item.name)
+    }
   }
 
 };
