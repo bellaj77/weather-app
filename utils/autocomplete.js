@@ -1,26 +1,18 @@
 // const CreateAutoComplete = { fetchData }
 // apikey: 17a1fc3fa922438dbbe01411211711
-// 'http://api.weatherapi.com/v1/current.json?key=17a1fc3fa922438dbbe01411211711&q=London&aqi=no'
 const fetchData = async (searchInput) => {
-  const response = await axios.get(
-    'http://api.weatherapi.com/v1/search.json',
-    {
-      params: {
-        key: '17a1fc3fa922438dbbe01411211711',
-        q: searchInput,
-
-
-      },
+  const response = await axios.get('http://api.weatherapi.com/v1/search.json', {
+    params: {
+      key: '17a1fc3fa922438dbbe01411211711',
+      q: searchInput,
     },
-  );
-  console.log(response.data)
+  });
+
+  console.log(response.data);
   return response.data;
-
-
 };
 
 const form = document.querySelector('.autocomplete');
-
 
 form.innerHTML = `
   <form class="mt-2 d-flex justify-content-end me-2">
@@ -46,12 +38,15 @@ const results = document.querySelector('.results')
 
 const renderOption = (location) => {
   return `
+
     <p>${location.name}</p>
   `
 }
 
+
 const onInput = async (evt) => {
   const items = await fetchData(evt.target.value);
+
 
   if (!items.length) {
     dropdown.classList.remove('show');
@@ -63,9 +58,9 @@ const onInput = async (evt) => {
     newItem.classList.add('dropdown-item')
     newItem.innerHTML = renderOption(item)
     results.append(newItem)
-  }
 
+
+  }
 };
 
-
-input.addEventListener('input', onInput);
+input.addEventListener('input', debounce(onInput, 500));
