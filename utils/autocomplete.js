@@ -1,23 +1,15 @@
 // const CreateAutoComplete = { fetchData }
 // apikey: 17a1fc3fa922438dbbe01411211711
 const fetchData = async (searchInput) => {
-  
-  const response = await axios.get(
-    'http://api.weatherapi.com/v1/search.json',
-    {
-      params: {
-        key: '17a1fc3fa922438dbbe01411211711',
-        q: searchInput,
-
-
-      },
+  const response = await axios.get('http://api.weatherapi.com/v1/search.json', {
+    params: {
+      key: '17a1fc3fa922438dbbe01411211711',
+      q: searchInput,
     },
-  );
+  });
 
-  console.log(response.data)
+  console.log(response.data);
   return response.data;
-
-
 };
 
 const form = document.querySelector('.autocomplete');
@@ -48,25 +40,22 @@ const input = document.querySelector('input');
 const renderOption = (locations) => {
   return `
     <p>${locations.name}
-  `
-}
+  `;
+};
 
 const onInput = async (evt) => {
-
   const items = await fetchData(evt.target.value);
 
   if (items) {
     for (let item of items) {
       const list = document.querySelector('.dropdown-menu');
       const newitem = document.createElement('a');
-      newitem.classList.add('dropdown-item')
-      newitem.innerHTML = renderOption(item)
-      list.append('newitem')
-      console.log(item.name)
+      newitem.classList.add('dropdown-item');
+      newitem.innerHTML = renderOption(item);
+      list.append('newitem');
+      console.log(item.name);
     }
-
-
   }
 };
 
-input.addEventListener('input', onInput);
+input.addEventListener('input', debounce(onInput, 500));
