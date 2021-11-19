@@ -1,27 +1,22 @@
 // const CreateAutoComplete = { fetchData }
-// apikey: 17a1fc3fa922438dbbe01411211711
-// 'http://api.weatherapi.com/v1/current.json?key=17a1fc3fa922438dbbe01411211711&q=London&aqi=no'
+
+const { default: axios } = require("axios");
+
+// fetching data from api
 const fetchData = async (searchInput) => {
-  const response = await axios.get(
-    'http://api.weatherapi.com/v1/search.json',
-    {
-      params: {
-        key: '17a1fc3fa922438dbbe01411211711',
-        q: searchInput,
-
-
-      },
+  const response = await axios.get('http://api.weatherapi.com/v1/search.json', {
+    params: {
+      key: '17a1fc3fa922438dbbe01411211711',
+      q: searchInput,
     },
-  );
-  console.log(response.data)
+  });
+
+  console.log(response.data);
   return response.data;
-
-
 };
 
+// input/autocomplete html markup
 const form = document.querySelector('.autocomplete');
-
-
 form.innerHTML = `
   <form class="mt-2 d-flex justify-content-end me-2">
   <div class="dropdown me-2 mt-2">
@@ -40,16 +35,39 @@ form.innerHTML = `
 <button class="float-end btn btn-light" type="submit">search</button>
 </form>
 `;
-const input = document.querySelector('input');
-const dropdown = document.querySelector('.dropdown-menu')
-const results = document.querySelector('.results')
 
+// saving document variables
+const input = document.querySelector('input');
+const dropdown = document.querySelector('.dropdown-menu');
+const results = document.querySelector('.results');
+
+// rendering autocomplete options
 const renderOption = (location) => {
   return `
     <p>${location.name}</p>
-  `
+  `;
+};
+
+//onOptionSelect Function 
+
+const data = {
+  async fetchData(searchInput) {
+    const currentConditions = await axios.get('http://www.omdbapi.com/current.json/', {
+      params: {
+        apikey: '738349a3',
+        s: searchTerm
+      }
+    })
+    return currentConditions.data;
+  }
+
 }
 
+const onOptionSelect = async () => {
+
+}
+
+// input event listener function
 const onInput = async (evt) => {
   const items = await fetchData(evt.target.value);
 
@@ -57,15 +75,31 @@ const onInput = async (evt) => {
     dropdown.classList.remove('show');
     return;
   }
-  dropdown.classList.add('show')
+  dropdown.classList.add('show');
   for (let item of items) {
     const newItem = document.createElement('a');
     newItem.classList.add('dropdown-item');
+
     newItem.innerHTML = renderOption(item)
     results.append(newItem)
-  }
 
+    newItem.innerHTML = renderOption(item);
+    for (let i = 0; i < 10; i++) {
+      results.append(newItem);
+    }
+    newItem.addEventListener('click', onOptionSelect){
+
+    }
+  }
 };
 
+// input event listener
+input.addEventListener('input', debounce(onInput, 500));
 
-input.addEventListener('input', onInput);
+// const option = document.querySelector('.dropdown-item');
+
+// const onOptionSelect = (item) => {
+//   console.log(item);
+// };
+
+// option.addEventListener('select', onOptionSelect);
