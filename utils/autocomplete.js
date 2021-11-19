@@ -47,14 +47,27 @@ const renderOption = (location) => {
 };
 
 // function for when an option is selected
-const onOptionSelect = (item) => {
-  console.log(item);
+const onOptionSelect = async (searchInput) => {
+  const currentWeather = await axios.get(
+    'http://api.weatherapi.com/v1/current.json',
+    {
+      params: {
+        key: '17a1fc3fa922438dbbe01411211711',
+        q: searchInput,
+      },
+    }
+  );
+  console.log(currentWeather.data);
 };
 
 // input event listener function
 const onInput = async (evt) => {
   const items = await fetchData(evt.target.value);
 
+  // if (!items.length) {
+  //   dropdown.classList.remove('show');
+  //   return;
+  // }
   if (!items.length) {
     dropdown.classList.remove('show');
     return;
