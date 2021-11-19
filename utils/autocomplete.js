@@ -60,7 +60,7 @@ const onInput = async (evt) => {
   dropdown.classList.add('show')
   for (let item of items) {
     const newItem = document.createElement('a');
-    newItem.classList.add('dropdown-item')
+    newItem.classList.add('dropdown-item');
     newItem.innerHTML = renderOption(item)
     results.append(newItem)
   }
