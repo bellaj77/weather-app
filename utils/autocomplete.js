@@ -64,7 +64,9 @@ const data = {
 }
 
 const onOptionSelect = async () => {
-
+  if (data.currentConditions) {
+    console.log(currentConditions.data)
+  }
 }
 
 // input event listener function
@@ -87,9 +89,7 @@ const onInput = async (evt) => {
     for (let i = 0; i < 10; i++) {
       results.append(newItem);
     }
-    newItem.addEventListener('click', onOptionSelect){
-
-    }
+    newItem.addEventListener('click', onOptionSelect)
   }
 };
 
@@ -103,3 +103,4 @@ input.addEventListener('input', debounce(onInput, 500));
 // };
 
 // option.addEventListener('select', onOptionSelect);
+s
