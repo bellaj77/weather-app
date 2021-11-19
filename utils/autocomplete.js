@@ -48,6 +48,7 @@ const renderOption = (location) => {
   `;
 };
 
+<<<<<<< HEAD
 //onOptionSelect Function 
 
 const data = {
@@ -68,17 +69,37 @@ const onOptionSelect = async () => {
     console.log(currentConditions.data)
   }
 }
+=======
+// function for when an option is selected
+const onOptionSelect = async (searchInput) => {
+  const currentWeather = await axios.get(
+    'http://api.weatherapi.com/v1/current.json',
+    {
+      params: {
+        key: '17a1fc3fa922438dbbe01411211711',
+        q: searchInput,
+      },
+    }
+  );
+  console.log(currentWeather.data);
+};
+>>>>>>> adf788f301dc931eb4499931275af4c940e9f3f1
 
 // input event listener function
 const onInput = async (evt) => {
   const items = await fetchData(evt.target.value);
 
+  // if (!items.length) {
+  //   dropdown.classList.remove('show');
+  //   return;
+  // }
   if (!items.length) {
     dropdown.classList.remove('show');
     return;
   }
   dropdown.classList.add('show');
   for (let item of items) {
+<<<<<<< HEAD
     const newItem = document.createElement('a');
     newItem.classList.add('dropdown-item');
 
@@ -86,15 +107,25 @@ const onInput = async (evt) => {
     results.append(newItem)
 
     newItem.innerHTML = renderOption(item);
+=======
+    const option = document.createElement('a');
+    option.classList.add('dropdown-item');
+    option.innerHTML = renderOption(item);
+>>>>>>> adf788f301dc931eb4499931275af4c940e9f3f1
     for (let i = 0; i < 10; i++) {
-      results.append(newItem);
+      results.append(option);
     }
+<<<<<<< HEAD
     newItem.addEventListener('click', onOptionSelect)
+=======
+    option.addEventListener('click', onOptionSelect);
+>>>>>>> adf788f301dc931eb4499931275af4c940e9f3f1
   }
 };
 
 // input event listener
 input.addEventListener('input', debounce(onInput, 500));
+<<<<<<< HEAD
 
 // const option = document.querySelector('.dropdown-item');
 
@@ -104,3 +135,5 @@ input.addEventListener('input', debounce(onInput, 500));
 
 // option.addEventListener('select', onOptionSelect);
 s
+=======
+>>>>>>> adf788f301dc931eb4499931275af4c940e9f3f1
