@@ -46,6 +46,11 @@ const renderOption = (location) => {
   `;
 };
 
+// function for when an option is selected
+const onOptionSelect = (item) => {
+  console.log(item);
+};
+
 // input event listener function
 const onInput = async (evt) => {
   const items = await fetchData(evt.target.value);
@@ -56,22 +61,15 @@ const onInput = async (evt) => {
   }
   dropdown.classList.add('show');
   for (let item of items) {
-    const newItem = document.createElement('a');
-    newItem.classList.add('dropdown-item');
-    newItem.innerHTML = renderOption(item);
+    const option = document.createElement('a');
+    option.classList.add('dropdown-item');
+    option.innerHTML = renderOption(item);
     for (let i = 0; i < 10; i++) {
-      results.append(newItem);
+      results.append(option);
     }
+    option.addEventListener('click', onOptionSelect);
   }
 };
 
 // input event listener
 input.addEventListener('input', debounce(onInput, 500));
-
-// const option = document.querySelector('.dropdown-item');
-
-// const onOptionSelect = (item) => {
-//   console.log(item);
-// };
-
-// option.addEventListener('select', onOptionSelect);
