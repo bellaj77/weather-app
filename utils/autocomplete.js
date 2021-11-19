@@ -1,7 +1,5 @@
 // const CreateAutoComplete = { fetchData }
 
-const { default: axios } = require("axios");
-
 // fetching data from api
 const fetchData = async (searchInput) => {
   const response = await axios.get('http://api.weatherapi.com/v1/search.json', {
@@ -48,27 +46,6 @@ const renderOption = (location) => {
   `;
 };
 
-//onOptionSelect Function 
-
-const data = {
-  async fetchData(searchInput) {
-    const currentConditions = await axios.get('http://www.omdbapi.com/current.json/', {
-      params: {
-        apikey: '738349a3',
-        s: searchTerm
-      }
-    })
-    return currentConditions.data;
-  }
-
-}
-
-const onOptionSelect = async () => {
-  if (data.currentConditions) {
-    console.log(currentConditions.data)
-  }
-}
-
 // input event listener function
 const onInput = async (evt) => {
   const items = await fetchData(evt.target.value);
@@ -81,15 +58,10 @@ const onInput = async (evt) => {
   for (let item of items) {
     const newItem = document.createElement('a');
     newItem.classList.add('dropdown-item');
-
-    newItem.innerHTML = renderOption(item)
-    results.append(newItem)
-
     newItem.innerHTML = renderOption(item);
     for (let i = 0; i < 10; i++) {
       results.append(newItem);
     }
-    newItem.addEventListener('click', onOptionSelect)
   }
 };
 
@@ -103,4 +75,3 @@ input.addEventListener('input', debounce(onInput, 500));
 // };
 
 // option.addEventListener('select', onOptionSelect);
-s
