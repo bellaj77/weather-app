@@ -59,9 +59,19 @@ const onInput = async (evt) => {
     const newItem = document.createElement('a');
     newItem.classList.add('dropdown-item');
     newItem.innerHTML = renderOption(item);
-    results.append(newItem);
+    for (let i = 0; i < 10; i++) {
+      results.append(newItem);
+    }
   }
 };
 
 // input event listener
 input.addEventListener('input', debounce(onInput, 500));
+
+// const option = document.querySelector('.dropdown-item');
+
+// const onOptionSelect = (item) => {
+//   console.log(item);
+// };
+
+// option.addEventListener('select', onOptionSelect);
